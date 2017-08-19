@@ -41,10 +41,6 @@ class Event(Resource):
         return {"event name": "event name",
                 "other stuff": "other stuff"}
 
-    def put(self):
-        """Create new Event."""
-        abort(404)
-
 
 class AddUser(Resource):
     """User Resources."""

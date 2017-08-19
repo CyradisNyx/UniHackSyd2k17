@@ -1,5 +1,5 @@
 """Define Database Model Structures."""
-from apiStuff import db, app, helpers
+from apiStuff import db, app, helpers, scraping
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
@@ -36,13 +36,13 @@ class Article(db.Model):
     content = db.Column(db.Text)
     date = db.Column(db.DateTime)
 
-    def __init__(self, source_url, event=None):
+    def __init__(self, source_url, scrapeData=None, event=None):
         """Assign Variables."""
         self.source_url = source_url
         if event is not None:
             event.append(self)
-
-        scrapeData = helpers.scrape(source_url)
+        if scrapeData is None:
+            scrapeData = helpers.scrape(source_url)
         self.title = scrapeData['title']
         self.source = scrapeData['source']
         self.content = scrapeData['content']
