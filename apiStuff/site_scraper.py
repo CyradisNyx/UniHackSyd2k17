@@ -48,13 +48,18 @@ def abc_site_scraper(site_url):
 	return article_urls[:7]
 			
 			
-			
-				
+def fox_site_scraper():
+	site_url = ['http://www.foxnews.com/', 'http://www.foxnews.com/']
+	r = requests.get(site_url[0])
+	soup = BeautifulSoup(r.text, 'html.parser')
+	article_urls = []
 
-				
-
-
-		
+	# scrapes the main site for topic urls.
+	for topic in soup.find_all('div', id = 'doc'):
+		for section in topic.find_all('section', id = 'latest'):
+			for article in section.find_all('a'):
+				article_urls.append(article['href'])
+	return (article_urls[:7])
 
 
 
@@ -69,12 +74,15 @@ def abc_site_scraper(site_url):
 #for article in article_urls:
 #	print (article +'\n')
 
-site = 'abc'
-site_url = ['http://www.abc.net.au/news/', 'http://www.abc.net.au']
-article_urls = abc_site_scraper(site_url)
+#site = 'abc'
+#site_url = ['http://www.abc.net.au/news/', 'http://www.abc.net.au']
+#article_urls = abc_site_scraper(site_url)
+#for article in article_urls:
+#	print (article +'\n')
+
+article_urls = fox_site_scraper()
 for article in article_urls:
 	print (article +'\n')
-
 
 
 
