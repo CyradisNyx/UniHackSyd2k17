@@ -25,26 +25,9 @@ class Articles(Resource):
 
     def get(self):
         """Return all the articles."""
-        data = {"article1": {"title": "Charlottesville mayor: I changed my mind about Confederate monuments",
-                            "text": "example piece of text 1.",
-                            "rating": 5,
-                            "source": "cnn",
-                            "event": "Charlottesville",
-                            "date": "19 Aug 2017",
-                },
-                "article2": {"title": "Charlottesville and the politics of fear",
-                            "text": "example piece of text 2.",
-                            "rating": 6,
-                            "source": "conversation",
-                            "event": "Charlottesville",
-                            "date": "19 Aug 2017",
-                },
-                "article3": {"title": "Charlottesville and the politics of fear",
-                            "text": "example piece of text 3.",
-                            "rating": 4,
-                            "source": "9news",
-                            "event": "Charlottesville",
-                            "date": "19 Aug 2017"}}
+        data = {}
+        for i in range(3):
+            data.add(models.Article.query.get(id).toDict())
         return jsonify(data)
 
 

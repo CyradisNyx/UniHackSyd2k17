@@ -8,8 +8,8 @@ import indicoio
 def get_rating(id):
     """Generate rating for content text."""
     indicoio.config.api_key = '11214320f4b6ce1e81f46ed4a570c7e0'
-    x = indicoio.political(models.article.query.get(id).content)
-    rating = (x['Liberal']/(x['Liberal'] + x['Conservative'])) * 10
+    x = indicoio.political(models.Article.query.get(id).content)
+    rating = (x['Liberal'] / (x['Liberal'] + x['Conservative'])) * 10
     return (rating)
 
 
@@ -37,8 +37,13 @@ def scrape(url):
 
 def genDB():
     """Fill Database with random info."""
-    for i in range(3):
-        temp = models.Article(str(i))
-        db.session.add(temp)
-        db.session.commit()
+    temp = models.Article('0')
+    db.session.add(temp)
+    db.session.commit()
+    temp = models.Article('1')
+    db.session.add(temp)
+    db.session.commit()
+    temp = models.Article('2')
+    db.session.add(temp)
+    db.session.commit()
     pass
