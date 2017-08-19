@@ -5,7 +5,7 @@ from unihack import app
 
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home' )
 def home():
     """Route for homepage."""
     return render_template('index.html')
@@ -15,6 +15,8 @@ def home():
 def page_not_found(e):
     """404 Page Not Found."""
     return render_template('404.html'), 404
+
+
 
 @app.after_request
 def add_header(r):
