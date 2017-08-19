@@ -19,7 +19,7 @@ import apiStuff.resources
 db.create_all()
 db.session.commit()
 
-apiStuff.helpers.genDB()
+apiStuff.scraping.scrape_all()
 
 api.add_resource(apiStuff.resources.Article, '/api/articles/<int:id>')
 api.add_resource(apiStuff.resources.Articles, '/api/articles')

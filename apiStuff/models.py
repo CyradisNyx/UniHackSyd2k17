@@ -28,7 +28,7 @@ class Article(db.Model):
 
     __tablename__ = "article"
     article_id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50))
+    title = db.Column(db.String(100))
     rating = db.Column(db.Integer)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'))
     source = db.Column(db.String(20))
@@ -38,11 +38,12 @@ class Article(db.Model):
 
     def __init__(self, source_url, scrapeData=None, event=None):
         """Assign Variables."""
+        print(source_url)
         self.source_url = source_url
         if event is not None:
             event.append(self)
         if scrapeData is None:
-            scrapeData = helpers.scrape(source_url)
+            scrapeData = scraping.article_scrape_conversation(source_url)
         self.title = scrapeData['title']
         self.source = scrapeData['source']
         self.content = scrapeData['content']
@@ -53,6 +54,8 @@ class Article(db.Model):
         """Representation of object lol."""
         return {self.article_id: {
             "title": self.title,
+            "date": self.date,
+            "source": self.source,
             "rating": self.rating,
             "content": self.content
         }}

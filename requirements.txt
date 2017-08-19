@@ -1,4 +1,3 @@
-
 Flask
 Flask-HTTPAuth
 Flask-RESTful
@@ -12,3 +11,5 @@ pip
 requests
 SQLAlchemy
 webargs
+nltk
+bs4
