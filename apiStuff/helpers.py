@@ -5,10 +5,10 @@ from apiStuff import db, models
 import indicoio
 
 
-def get_rating(id):
+def get_rating(content):
     """Generate rating for content text."""
     indicoio.config.api_key = '11214320f4b6ce1e81f46ed4a570c7e0'
-    x = indicoio.political(models.Article.query.get(id).content)
+    x = indicoio.political(content)
     rating = (x['Liberal'] / (x['Liberal'] + x['Conservative'])) * 10
     return (rating)
 
