@@ -1,5 +1,6 @@
 """Flask-RESTful Resource."""
 
+from flask import jsonify
 from flask_restful import Resource, abort
 from apiStuff import db
 
@@ -22,12 +23,8 @@ class Articles(Resource):
 
     def get(self):
         """Return all the articles."""
-        return {"article": {
-            "article": "article"
-        }, "article2": {
-            "article": "article"
-        }
-        }
+        data = {"article1": {"title": "title", "text": "text"}, "article2": {"title": "title", "text": "text"}}
+        return jsonify(data)
 
 
 class Event(Resource):
