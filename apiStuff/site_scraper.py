@@ -27,14 +27,29 @@ def news9_site_scraper(site_url):
 	soup = BeautifulSoup(r.text, 'html.parser')
 	article_urls = []
 
-	# scrapes the main site for topic urls.
-	soup.find()
+	# scrapes the main site for article urls.
 	for topic in soup.find_all('article'):
 		topic = topic.find('div')
 		topic = topic.find('a')
 		if topic:
 			article_urls.append(topic['href'])
 	return (article_urls)
+
+def abc_site_scraper(site_url):
+	r = requests.get(site_url[0])
+	soup = BeautifulSoup(r.text, 'html.parser')
+	article_urls = []
+
+	# scrapes the main site for topic urls.
+	for topic in soup.find_all('li', class_ = 'doctype-article'):
+		if topic.find('h3'):
+			topic = topic.find('h3').find('a')
+			article_urls.append(site_url[1] + topic['href'])
+	return article_urls[:7]
+			
+			
+			
+				
 
 				
 
@@ -48,9 +63,15 @@ def news9_site_scraper(site_url):
 #article_urls = conversation_site_scraper(site_url)
 #print(article_urls)
 
-site = '9news'
-site_url = ['http://www.9news.com.au/national', 'http://www.9news.com']
-article_urls = news9_site_scraper(site_url)
+#site = '9news'
+#site_url = ['http://www.9news.com.au/national', 'http://www.9news.com']
+#article_urls = news9_site_scraper(site_url)
+#for article in article_urls:
+#	print (article +'\n')
+
+site = 'abc'
+site_url = ['http://www.abc.net.au/news/', 'http://www.abc.net.au']
+article_urls = abc_site_scraper(site_url)
 for article in article_urls:
 	print (article +'\n')
 
