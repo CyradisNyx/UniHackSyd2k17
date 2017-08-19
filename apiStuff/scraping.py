@@ -1,7 +1,7 @@
 """Various Scraping Functions for each website."""
 import requests
 from bs4 import BeautifulSoup
-from apiStuff import models, db
+from apiStuff import models, db, helpers
 
 
 def scrape(article_url):
@@ -13,16 +13,18 @@ def scrape_all():
     """Build database by scraping each site, and generating events/articles."""
     curr_urls = site_scrape_abc()
     for url in curr_urls:
-        # Generate Event Stuff Here, and pass into temp
+        # Make Articles
         temp = models.Article(url, article_scrape_abc(url))
         db.session.add(temp)
         db.session.commit()
+        helpers.makeEvent(temp)
 
     curr_urls = site_scrape_conversation()
     for url in curr_urls:
         temp = models.Article(url, article_scrape_conversation(url))
         db.session.add(temp)
         db.session.commit()
+        helpers.makeEvent(temp)
 
 
 def site_scrape_conversation():

@@ -74,6 +74,7 @@ class Event(db.Model):
         title (str): title of event
         date (str): date of creation (date of event)
         articles (db.Relationship): related articles
+        keywords (str): comma separated list (as string) of named entity keywords
     """
 
     __tablename__ = "event"
@@ -81,10 +82,21 @@ class Event(db.Model):
     title = db.Column(db.String(50))
     date = db.Column(db.DateTime)
     articles = db.relationship("Article", backref="event", lazy="dynamic")
+    keywords = db.Column(db.String(200))
 
-    def __init__(self):
+    def __init__(self, keywords):
         """Assign Variables."""
-        pass
+        self.keywords = keywords
+
+    def toDict(self):
+        """Representation of Object."""
+        articledict = {}
+        for article in self.articles:
+            articledict[article.article_id] = article.title
+        return {self.event_id: {
+            "keywords": self.keywords,
+            "articles": articledict
+        }}
 
 
 class User(db.Model):

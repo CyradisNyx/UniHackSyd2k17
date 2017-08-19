@@ -39,8 +39,10 @@ class Event(Resource):
 
     def get(self, id):
         """Get Event info."""
-        return {"event name": "event name",
-                "other stuff": "other stuff"}
+        temp = models.Event.query.get(id)
+        if temp is None:
+            abort(404)
+        return jsonify(temp.toDict())
 
 
 class AddUser(Resource):

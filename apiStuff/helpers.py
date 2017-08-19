@@ -42,15 +42,22 @@ def jaccard_similarity(query, document):
     return len(intersection) / len(union)
 
 
-def genDB():
-    """Fill Database."""
-    temp = models.Article('0')
-    db.session.add(temp)
+def makeEvent(article):
+    """Figure out whether or not to make new Event."""
+    events = models.Event.query.all()
+    temp_token = get_continuous_chunks(article.content)
+
+    for event in events:
+        if jaccard_similarity(temp_token,
+                              event.keywords.split(',')) > 0.3:
+            event.articles.append(article)
+            db.session.add(event)
+            db.session.add(article)
+            db.session.commit()
+            return
+    newEvent = models.Event(",".join(temp_token))
+    newEvent.articles.append(article)
+    db.session.add(newEvent)
+    db.session.add(article)
     db.session.commit()
-    temp = models.Article('1')
-    db.session.add(temp)
-    db.session.commit()
-    temp = models.Article('2')
-    db.session.add(temp)
-    db.session.commit()
-    pass
+    return

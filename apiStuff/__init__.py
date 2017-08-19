@@ -24,6 +24,7 @@ if not os.path.exists('app.db'):
 
 api.add_resource(apiStuff.resources.Article, '/api/articles/<int:id>')
 api.add_resource(apiStuff.resources.Articles, '/api/articles')
+api.add_resource(apiStuff.resources.Event, '/api/event/<int:id>')
 api.add_resource(apiStuff.resources.AddUser, '/api/users')
 api.add_resource(apiStuff.resources.GetUser, '/api/users/<int:id>')
 api.add_resource(apiStuff.resources.Token, '/api/token')
