@@ -25,7 +25,23 @@ class Article(db.Model):
     title = db.Column(db.String(50))
     rating = db.Column(db.Integer)
     event = db.Column(db.Integer, db.ForeignKey('event.event_id'))
+    source = db.Column(db.String(20))
+    source_url = db.Column(db.String(80))
 
     def __init__(self, source_url):
-        """Lol init stuff."""
-        pass
+        """Assign Variables."""
+        self.source_url = source_url
+
+
+class Event(db.Model):
+    """
+    Event db Model.
+
+    Table of Event information.
+
+    Args:
+        idek
+
+    Attributes:
+        idek
+    """
