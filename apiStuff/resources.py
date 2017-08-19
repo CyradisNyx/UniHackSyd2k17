@@ -1,5 +1,7 @@
-from flask_restful import Resource, abort, reqparse
-from apiStuff import db, models
+"""Flask-RESTful Resource."""
+
+from flask_restful import Resource, abort
+from apiStuff import db
 
 
 class Article(Resource):
@@ -9,3 +11,20 @@ class Article(Resource):
         """Get Article Info."""
         return {"article name": "Article name lolz",
                 "article text": "article text here"}
+
+    def put(self):
+        """Create new Article."""
+        abort(404)
+
+
+class Event(Resource):
+    """Event Resource."""
+
+    def get(self, id):
+        """Get Event info."""
+        return {"event name": "event name",
+                "other stuff": "other stuff"}
+
+    def put(self):
+        """Create new Event."""
+        abort(404)
