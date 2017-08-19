@@ -8,4 +8,4 @@ from unihack import app
 @app.route('/home')
 def home():
     """Route for homepage."""
-    return render_template('index.html')
+    return render_template('layout.html')

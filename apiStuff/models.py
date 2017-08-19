@@ -32,7 +32,7 @@ class Article(db.Model):
     rating = db.Column(db.Integer)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'))
     source = db.Column(db.String(20))
-    source_url = db.Column(db.String(80))
+    source_url = db.Column(db.String(80), unique=True)
     content = db.Column(db.Text)
     date = db.Column(db.DateTime)
 

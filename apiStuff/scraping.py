@@ -120,7 +120,18 @@ def article_scrape_breitbart(site_url):
 
 def site_scrape_fox():
     """Mass Site Scraper for Fox."""
-    pass
+    site_url = ['http://www.foxnews.com/', 'http://www.foxnews.com/']
+    r = requests.get(site_url[0])
+    soup = BeautifulSoup(r.text, 'html.parser')
+    article_urls = []
+
+    # scrapes the main site for topic urls.
+    for topic in soup.find_all('div', id='doc'):
+        for section in topic.find_all('section', id='latest'):
+            for article in section.find_all('a'):
+                article_urls.append(article['href'])
+
+    return (article_urls[:7])
 
 
 def article_scrape_fox(site_url):
