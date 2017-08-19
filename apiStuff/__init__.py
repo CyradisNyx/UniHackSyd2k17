@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 # API SETUP
 api = Api(app)
 
-# import apiStuff.models
+import apiStuff.models
 import apiStuff.resources
 
 db.create_all()
