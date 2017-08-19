@@ -330,7 +330,7 @@ aside.languages {
 
 #tabs > ul > li{
 	margin:0 2px 0 0;
-	padding:1px 1px;
+	padding:7px 10px;
 	display:block;
 	float:left;
 	color:#FFF;
@@ -385,11 +385,11 @@ blockquote {
 aside.languages {
 	font: .8em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	background:#2e2e2e;
-	padding: 25px;
-	padding-top: 1em;
+	padding: 10px;
+	padding-top: 20px;
 	float: right;
-	width: 500px;
-	margin-left: 1em;
+	width: 1000px;
+	margin-left: 50px;
 }
 
 .languages h3 {
