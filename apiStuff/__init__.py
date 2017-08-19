@@ -2,16 +2,16 @@
 from flask import Flask
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
+from flask_httpauth import HTTPBasicAuth
 
 # APP SETUP
 app = Flask(__name__)
 app.config.from_object('config')
 
-# DATABASE SETUP
+# SETUP
 db = SQLAlchemy(app)
-
-# API SETUP
 api = Api(app)
+auth = HTTPBasicAuth()
 
 import apiStuff.models
 import apiStuff.resources
@@ -21,5 +21,8 @@ db.session.commit()
 
 apiStuff.helpers.genDB()
 
-api.add_resource(apiStuff.resources.Article, '/api/article/<int:id>')
+api.add_resource(apiStuff.resources.Article, '/api/articles/<int:id>')
 api.add_resource(apiStuff.resources.Articles, '/api/articles')
+api.add_resource(apiStuff.resources.AddUser, '/api/users')
+api.add_resource(apiStuff.resources.GetUser, '/api/users/<int:id>')
+api.add_resource(apiStuff.resources.Token, '/api/token')

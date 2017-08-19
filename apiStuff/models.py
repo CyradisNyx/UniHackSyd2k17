@@ -1,5 +1,8 @@
 """Define Database Model Structures."""
 from apiStuff import db, app, helpers
+from passlib.apps import custom_app_context as pwd_context
+from itsdangerous import (TimedJSONWebSignatureSerializer
+                          as Serializer, BadSignature, SignatureExpired)
 
 
 class Article(db.Model):
@@ -80,3 +83,59 @@ class Event(db.Model):
     def __init__(self):
         """Assign Variables."""
         pass
+
+
+class User(db.Model):
+    """
+    User db model.
+
+    Table of user information.
+
+    Args:
+        pass
+
+    Attributes:
+        user_id (int): Integer representation/primary key
+        username (str): Unique username
+        email (str): Unique email
+        profile_pic (str): path to profile picture
+    """
+
+    __tablename__ = "user"
+    user_id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(100), unique=True)
+    password_hash = db.Column(db.String(128))
+    profile_pic = db.Column(db.String(100))
+
+    def __init__(self, email, username, pwd):
+        """Assign Variables."""
+        self.username = username
+        self.email = email
+        self.hash_password(pwd)
+
+    def hash_password(self, pwd):
+        """Encrypt pwd and save hashed version."""
+        self.password_hash = pwd_context.encrypt(pwd)
+
+    def verify_password(self, pwd):
+        """Return Boolean if pwd matches hash."""
+        return pwd_context.verify(pwd, self.password_hash)
+
+    def generate_auth_token(self, expiration=600):
+        """Generate Auth Token."""
+        s = Serializer(app.config['SECRET_KEY'], expires_in=expiration)
+        return s.dumps({'user_id': self.user_id})
+
+    @staticmethod
+    def verify_auth_token(token):
+        """Verify Auth Token Provided."""
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except SignatureExpired:
+            return None
+        except BadSignature:
+            return None
+        user = User.query.get(data['user_id'])
+        return user

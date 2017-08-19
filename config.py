@@ -3,6 +3,7 @@ import os
 
 DEBUG = True
 SQLALCHEMY_TRACK_MODIFICATIONS = True
+SECRET_KEY = "omnomnomnom"
 
 # Application directory
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))

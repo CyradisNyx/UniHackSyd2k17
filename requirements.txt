@@ -1,5 +1,14 @@
+
 Flask
+Flask-HTTPAuth
 Flask-RESTful
 Flask-SQLAlchemy
 numpy
 IndicoIo
+itsdangerous
+marshmallow
+passlib
+pip
+requests
+SQLAlchemy
+webargs
