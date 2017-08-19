@@ -1,23 +1,53 @@
+
 {% extends "layout.html" %}
 
 {% block content %}
+
   <main class="hero-section">
     <div class="container">
 
-      <div class="section-content">
+      <!--<div class="section-content">
         <h2>Events</h2>
+      </div> -->
+
+      <div class="section-device">
+      <p> Events</p>
+
+
+      <aside role="complementary" class="languages">
+    <h3>Core Languages</h3>
+     <div id="tabContainer">
+      <div id="tabs">
+      <ul>
+        <li id="tab1"><a href="#tabPanel1">Charlottesville</a></li>
+        <li id="tab2"><a href="#tabPanel2">London Olympics</a></li>
+        <li id="tab3"><a href="#tabPanel3">Australia Day</a></li>
+      </ul>
+    </div>
       </div>
-
-
-        <div class="articlebox effect1">
-        <h3>Articel here</h3>
-        </div>
-
-
-
+      <div id="containers">
+      <div id="tabPanel1">
+        <h4>Charlottesville</h4>
+        <p><strong>this is line one</p>
+        <p>this is line two</p>
+      </div>
+      <div id="tabPanel2">
+        <h4>London Olympics</h4>
+        <p><strong>how coool are we</p>
+        <p>yeah we are ecool</p>
+      </div>
+      <div id="tabPanel3">
+        <h4>Australia Day</h4>
+        <p><strong>Good job michael</strong> </p>
+        <p> yeah yeah yeah </p>
+      </div>
+    </div>
+  </div>
+    </aside>
 
       <div class="clearfix"></div>
 
     </div>
   </main>
+
 {% endblock %}
