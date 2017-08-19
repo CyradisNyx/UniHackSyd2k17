@@ -2,19 +2,15 @@
 <html>
   <head>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet'>
-    <link rel="stylesheet" type="text/css" href="static/main.css">
+     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet"> 
 
   </head>
   <body>
     <header>
       <div class="container">
-        <h1 class="title">Learning Flask</h1>
+        <h1 class="title">News-e</h1>
       </div>
-
     </header>
-
-    <div class="section-leftpane">
-    <h1>Test Page</h1></div>
 
     {% block content %}
     {% endblock %}
