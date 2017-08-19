@@ -27,10 +27,11 @@ class Articles(Resource):
 
     def get(self):
         """Return all the articles."""
-        data = {}
-        for i in range(3):
-            data.add(models.Article.query.get(id).toDict())
-        return jsonify(data)
+        articles = models.Article.query.all()
+        output = {}
+        for article in articles:
+            output[article.article_id] = article.toDict()
+        return jsonify(output)
 
 
 class Event(Resource):

@@ -38,7 +38,6 @@ class Article(db.Model):
 
     def __init__(self, source_url, scrapeData=None, event=None):
         """Assign Variables."""
-        print(source_url)
         self.source_url = source_url
         if event is not None:
             event.append(self)

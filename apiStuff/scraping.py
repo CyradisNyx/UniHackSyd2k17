@@ -18,6 +18,12 @@ def scrape_all():
         db.session.add(temp)
         db.session.commit()
 
+    curr_urls = site_scrape_conversation()
+    for url in curr_urls:
+        temp = models.Article(url, article_scrape_conversation(url))
+        db.session.add(temp)
+        db.session.commit()
+
 
 def site_scrape_conversation():
     """Mass Site Scraper for conversation.com ."""
@@ -148,6 +154,7 @@ def article_scrape_washpo(site_url):
 
     return output
 
+
 # NOT WORKING
 def site_scrape_nine():
     """Mass Site Scraper for 9 News."""
@@ -160,8 +167,9 @@ def site_scrape_nine():
         topic = topic.find('div')
         topic = topic.find('a')
         if topic:
-            article_urls.append(site_url[0] + topic['href'])
+            article_urls.append(topic['href'])
 
+    print(article_urls)
     return article_urls
 
 

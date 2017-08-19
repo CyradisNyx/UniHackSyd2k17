@@ -3,6 +3,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth
+import os
 
 # APP SETUP
 app = Flask(__name__)
@@ -16,10 +17,10 @@ auth = HTTPBasicAuth()
 import apiStuff.models
 import apiStuff.resources
 
-db.create_all()
-db.session.commit()
-
-apiStuff.scraping.scrape_all()
+if not os.path.exists('app.db'):
+    db.create_all()
+    db.session.commit()
+    apiStuff.scraping.scrape_all()
 
 api.add_resource(apiStuff.resources.Article, '/api/articles/<int:id>')
 api.add_resource(apiStuff.resources.Articles, '/api/articles')
