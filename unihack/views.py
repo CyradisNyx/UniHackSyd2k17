@@ -5,7 +5,7 @@ from unihack import app
 
 
 @app.route('/')
-@app.route('/home' )
+@app.route('/home')
 def home():
     """Route for homepage."""
     return render_template('index.html')
@@ -17,10 +17,11 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-
 @app.after_request
 def add_header(r):
     """
+    Stop caching CSS.
+
     Add headers to both force latest IE rendering engine or Chrome Frame,
     and also to cache the rendered page for 10 minutes.
     """
