@@ -28,17 +28,31 @@ class Article(db.Model):
     title = db.Column(db.String(50))
     rating = db.Column(db.Integer)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'))
-    event = db.relationship("Event")
     source = db.Column(db.String(20))
     source_url = db.Column(db.String(80))
     content = db.Column(db.Text)
+    date = db.Column(db.DateTime)
 
-    def __init__(self, source_url, event):
+    def __init__(self, source_url, event=None):
         """Assign Variables."""
         self.source_url = source_url
-        self.event = event
+        if event is not None:
+            event.append(self)
 
         scrapeData = helpers.scrape(source_url)
+        self.title = scrapeData['title']
+        self.source = scrapeData['source']
+        self.content = scrapeData['content']
+
+        # self.rating = helpers.get_rating(self.article_id)
+
+    def toDict(self):
+        """Representation of object lol."""
+        return {self.article_id: {
+            "title": self.title,
+            "rating": self.rating,
+            "content": self.content
+        }}
 
 
 class Event(db.Model):

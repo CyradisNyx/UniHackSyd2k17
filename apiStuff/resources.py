@@ -2,7 +2,7 @@
 
 from flask import jsonify
 from flask_restful import Resource, abort
-from apiStuff import db
+from apiStuff import db, models
 
 
 class Article(Resource):
@@ -10,8 +10,10 @@ class Article(Resource):
 
     def get(self, id):
         """Get Article Info."""
-        return {"article name": "Article name lolz",
-                "article text": "article text here"}
+        temp = models.Article.query.get(id)
+        if temp is None:
+            abort(404)
+        return jsonify(temp.toDict())
 
     def put(self):
         """Create new Article."""

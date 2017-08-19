@@ -19,5 +19,7 @@ import apiStuff.resources
 db.create_all()
 db.session.commit()
 
+apiStuff.helpers.genDB()
+
 api.add_resource(apiStuff.resources.Article, '/api/article/<int:id>')
 api.add_resource(apiStuff.resources.Articles, '/api/articles')
