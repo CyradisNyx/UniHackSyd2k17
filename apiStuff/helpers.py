@@ -1,5 +1,16 @@
 """Helper Variables and Functions."""
-from apiStuff import models, db
+
+import numpy as np
+from apiStuff import db, models
+import indicoio
+
+
+def get_rating(id):
+    """Generate rating for content text."""
+    indicoio.config.api_key = '11214320f4b6ce1e81f46ed4a570c7e0'
+    x = indicoio.political(models.article.query.get(id).content)
+    rating = (x['Liberal']/(x['Liberal'] + x['Conservative'])) * 10
+    return (rating)
 
 
 def scrape(url):
