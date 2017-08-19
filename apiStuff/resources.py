@@ -17,6 +17,19 @@ class Article(Resource):
         abort(404)
 
 
+class Articles(Resource):
+    """Multiple Articles Endpoint."""
+
+    def get(self):
+        """Return all the articles."""
+        return {"article": {
+            "article": "article"
+        }, "article2": {
+            "article": "article"
+        }
+        }
+
+
 class Event(Resource):
     """Event Resource."""
 

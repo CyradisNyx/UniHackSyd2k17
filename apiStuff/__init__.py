@@ -20,3 +20,4 @@ db.create_all()
 db.session.commit()
 
 api.add_resource(apiStuff.resources.Article, '/api/article/<int:id>')
+api.add_resource(apiStuff.resources.Articles, '/api/articles')
