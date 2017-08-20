@@ -17,9 +17,13 @@
     <form action = "http://10.1.1.134:5000">
       <button  type="submit">Show Event</button>
       <select name="event">
-        <option value="1">Foo</option>
-        <option value="2">Bar</option>
-
+        <option value="1">Political</option>
+        <option value="2">Terrorism</option>
+        <option value="3">Local</option>
+        <option value="4">World</option>
+        <option value="5">Recent</option>
+        <option value="6">Infrastructure</option>
+        <option value="7">Sport</option>
       </select>
     </form>
     <div id="tabContainer">
@@ -32,19 +36,6 @@
       <div id="containers">
       <div id="tabPanel1">
         <p>{{ event['articles'][id]['content'] }}</p>
-        <h4>Charlottesville</h4>
-        <p><strong>this is line one</p>
-        <p>this is line two</p>
-      </div>
-      <div id="tabPanel2">
-        <h4>London Olympics</h4>
-        <p><strong>how coool are we</p>
-        <p>yeah we are ecool</p>
-      </div>
-      <div id="tabPanel3">
-        <h4>Australia Day</h4>
-        <p><strong>Good job michael</strong> </p>
-        <p> yeah yeah yeah </p>
       </div>
     </div>
   </div>
