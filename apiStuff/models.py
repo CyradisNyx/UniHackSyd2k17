@@ -47,7 +47,7 @@ class Article(db.Model):
         self.source = scrapeData['source']
         self.content = scrapeData['content']
 
-        self.rating = helpers.get_rating(self.content)
+        self.rating = int(helpers.get_rating(self.content))
 
     def toDict(self):
         """Representation of object lol."""

@@ -1,7 +1,7 @@
 """Various Scraping Functions for each website."""
 import requests
 from bs4 import BeautifulSoup
-#from apiStuff import models, db, helpers
+from apiStuff import models, db, helpers
 
 
 def scrape(article_url):
@@ -182,7 +182,6 @@ def site_scrape_nine():
         if topic:
             article_urls.append(topic['href'])
 
-    print(article_urls)
     return article_urls
 
 
@@ -202,6 +201,3 @@ def article_scrape_nine(site_url):
             output['content'] += line.get_text() + '\n\n'
 
     return output
-
-urls = site_scrape_nine()
-print(urls)
