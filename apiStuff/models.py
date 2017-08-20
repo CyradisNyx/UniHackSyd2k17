@@ -32,7 +32,7 @@ class Article(db.Model):
     rating = db.Column(db.Integer)
     event_id = db.Column(db.Integer, db.ForeignKey('event.event_id'))
     source = db.Column(db.String(20))
-    source_url = db.Column(db.String(80), unique=True)
+    source_url = db.Column(db.String(80))
     content = db.Column(db.Text)
     date = db.Column(db.DateTime)
 
@@ -84,18 +84,20 @@ class Event(db.Model):
     articles = db.relationship("Article", backref="event", lazy="dynamic")
     keywords = db.Column(db.String(200))
 
-    def __init__(self, keywords):
+    def __init__(self, keywords, title):
         """Assign Variables."""
         self.keywords = keywords
+        self.title = title
 
     def toDict(self):
         """Representation of Object."""
         articledict = {}
         for article in self.articles:
-            articledict[article.article_id] = article.title
+            articledict.update(article.toDict())
         return {self.event_id: {
             "keywords": self.keywords,
-            "articles": articledict
+            "articles": articledict,
+            "title": self.title
         }}
 
 

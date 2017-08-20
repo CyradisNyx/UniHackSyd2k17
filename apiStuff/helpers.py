@@ -49,13 +49,14 @@ def makeEvent(article):
 
     for event in events:
         if jaccard_similarity(temp_token,
-                              event.keywords.split(',')) > 0.3:
+                              event.keywords.split(',')) > 0.4:
             event.articles.append(article)
             db.session.add(event)
             db.session.add(article)
             db.session.commit()
             return
-    newEvent = models.Event(",".join(temp_token))
+    newEvent = models.Event(",".join(temp_token), article.title)
+    print(newEvent.title)
     newEvent.articles.append(article)
     db.session.add(newEvent)
     db.session.add(article)
