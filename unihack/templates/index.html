@@ -30,12 +30,14 @@
       <div id="tabs">
       <ul>
         <li>{{ event['title'] }}</li>
+        <li>{{ event['articles']['rating'] }}
+        <li>{{ event['articles']['source'] }}
       </ul>
     </div>
       </div>
       <div id="containers">
       <div id="tabPanel1">
-        <p>{{ event['articles'][id]['content'] }}</p>
+        <p>{{ event['articles']['content'] }}</p>
       </div>
     </div>
   </div>
