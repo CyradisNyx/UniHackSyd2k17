@@ -66,7 +66,7 @@ def article_scrape_conversation(site_url):
 
     for text in soup.find_all('div', itemprop='articleBody'):
         for line in text.find_all('p'):
-            output['content'] += line.get_text()
+            output['content'] += line.get_text() + '\n\n'
 
     return output
 
@@ -102,7 +102,7 @@ def article_scrape_abc(site_url):
 
     for text in soup.find_all('div', class_='article section'):
         for line in text.find_all('p'):
-            output['content'] += line.get_text()
+            output['content'] += line.get_text() + '\n\n'
 
     end_index = output['content'].index(termination_string)
     output['content'] = output['content'][:end_index].rstrip()
@@ -160,7 +160,7 @@ def article_scrape_washpo(site_url):
 
     for text in soup.find_all('div', itemprop='articleBody'):
         for line in text.find_all('p'):
-            output['content'] += line.get_text()
+            output['content'] += line.get_text() + '\n\n'
 
     end_index = output['content'].index(termination_string)
     output['content'] = output['content'][:end_index].rstrip()
@@ -199,6 +199,6 @@ def article_scrape_nine(site_url):
 
     for text in soup.find_all('div', itemprop='article__body-croppable'):
         for line in text.find_all('p'):
-            output['content'] += line.get_text()
+            output['content'] += line.get_text() + '\n\n'
 
     return output
