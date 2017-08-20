@@ -51,13 +51,13 @@ class Article(db.Model):
 
     def toDict(self):
         """Representation of object lol."""
-        return {self.article_id: {
+        return {
             "title": self.title,
             "date": self.date,
             "source": self.source,
             "rating": self.rating,
             "content": self.content
-        }}
+        }
 
 
 class Event(db.Model):

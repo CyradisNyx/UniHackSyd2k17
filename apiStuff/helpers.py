@@ -49,7 +49,7 @@ def makeEvent(article):
 
     for event in events:
         if jaccard_similarity(temp_token,
-                              event.keywords.split(',')) > 0.4:
+                              event.keywords.split(',')) > 0.25:
             event.articles.append(article)
             db.session.add(event)
             db.session.add(article)
