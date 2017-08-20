@@ -14,17 +14,24 @@
 
       <aside role="complementary" class="languages">
     <h3>Events</h3>
-     <div id="tabContainer">
+    <form action = "http://10.1.1.134:5000">
+      <button  type="submit">Show Event</button>
+      <select name="event">
+        <option value="1">Foo</option>
+        <option value="2">Bar</option>
+
+      </select>
+    </form>
+    <div id="tabContainer">
       <div id="tabs">
       <ul>
-        <li id="tab1"><a href="#tabPanel1">Charlottesville</a></li>
-        <li id="tab2"><a href="#tabPanel2">London Olympics</a></li>
-        <li id="tab3"><a href="#tabPanel3">Australia Day</a></li>
+        <li>{{ event['title'] }}</li>
       </ul>
     </div>
       </div>
       <div id="containers">
       <div id="tabPanel1">
+        <p>{{ event['articles'][id]['content'] }}</p>
         <h4>Charlottesville</h4>
         <p><strong>this is line one</p>
         <p>this is line two</p>
@@ -47,5 +54,4 @@
 
     </div>
   </main>
-
 {% endblock %}
