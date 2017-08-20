@@ -1,14 +1,21 @@
 """Define Views and Routes for Front End App."""
 
-from flask import render_template
+from flask import render_template, request
 from unihack import app
+import requests
 
 
 @app.route('/')
 @app.route('/home')
 def home():
+    id = request.args.get('event', '1')
+    event = requests.get('http://10.1.1.131:5000/api/event/' + id).json()
     """Route for homepage."""
-    return render_template('index.html')
+    #print(event)
+    #event[id]['articles'][id]['content'].replace('\n', '')
+    return render_template('index.html', event = event[id], id = id)
+
+
 
 
 @app.errorhandler(404)
