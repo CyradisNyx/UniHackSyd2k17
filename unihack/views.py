@@ -13,7 +13,7 @@ def home():
     """Route for homepage."""
     #print(event)
     #event[id]['articles'][id]['content'].replace('\n', '')
-    return render_template('index.html', event = event[id], id = id)
+    return render_template('index.html', event = event[id], id = id, sid = str(id))
 
 
 
